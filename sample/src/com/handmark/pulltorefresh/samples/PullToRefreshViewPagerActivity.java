@@ -18,8 +18,6 @@ package com.handmark.pulltorefresh.samples;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -28,8 +26,10 @@ import android.widget.ImageView;
 import com.handmark.pulltorefresh.extras.viewpager.PullToRefreshViewPager;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.jokes.ext.PagerAdapter;
+import com.jokes.ext.VerticalViewPager;
 
-public class PullToRefreshViewPagerActivity extends Activity implements OnRefreshListener<ViewPager> {
+public class PullToRefreshViewPagerActivity extends Activity implements OnRefreshListener<VerticalViewPager> {
 
 	private PullToRefreshViewPager mPullToRefreshViewPager;
 
@@ -41,12 +41,12 @@ public class PullToRefreshViewPagerActivity extends Activity implements OnRefres
 		mPullToRefreshViewPager = (PullToRefreshViewPager) findViewById(R.id.pull_refresh_viewpager);
 		mPullToRefreshViewPager.setOnRefreshListener(this);
 
-		ViewPager vp = mPullToRefreshViewPager.getRefreshableView();
+		VerticalViewPager vp = mPullToRefreshViewPager.getRefreshableView();
 		vp.setAdapter(new SamplePagerAdapter());
 	}
 
 	@Override
-	public void onRefresh(PullToRefreshBase<ViewPager> refreshView) {
+	public void onRefresh(PullToRefreshBase<VerticalViewPager> refreshView) {
 		new GetDataTask().execute();
 	}
 
@@ -100,5 +100,6 @@ public class PullToRefreshViewPagerActivity extends Activity implements OnRefres
 			super.onPostExecute(result);
 		}
 	}
+
 
 }

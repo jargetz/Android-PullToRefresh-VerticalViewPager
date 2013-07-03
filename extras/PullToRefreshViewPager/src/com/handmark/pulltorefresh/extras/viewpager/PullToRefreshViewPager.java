@@ -16,13 +16,13 @@
 package com.handmark.pulltorefresh.extras.viewpager;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.jokes.ext.PagerAdapter;
+import com.jokes.ext.VerticalViewPager;
 
-public class PullToRefreshViewPager extends PullToRefreshBase<ViewPager> {
+public class PullToRefreshViewPager extends PullToRefreshBase<VerticalViewPager> {
 
 	public PullToRefreshViewPager(Context context) {
 		super(context);
@@ -34,19 +34,19 @@ public class PullToRefreshViewPager extends PullToRefreshBase<ViewPager> {
 
 	@Override
 	public final Orientation getPullToRefreshScrollDirection() {
-		return Orientation.HORIZONTAL;
+		return Orientation.VERTICAL;
 	}
 
 	@Override
-	protected ViewPager createRefreshableView(Context context, AttributeSet attrs) {
-		ViewPager viewPager = new ViewPager(context, attrs);
+	protected VerticalViewPager createRefreshableView(Context context, AttributeSet attrs) {
+		VerticalViewPager viewPager = new VerticalViewPager(context, attrs);
 		viewPager.setId(R.id.viewpager);
 		return viewPager;
 	}
 
 	@Override
 	protected boolean isReadyForPullStart() {
-		ViewPager refreshableView = getRefreshableView();
+		VerticalViewPager refreshableView = getRefreshableView();
 
 		PagerAdapter adapter = refreshableView.getAdapter();
 		if (null != adapter) {
@@ -58,7 +58,7 @@ public class PullToRefreshViewPager extends PullToRefreshBase<ViewPager> {
 
 	@Override
 	protected boolean isReadyForPullEnd() {
-		ViewPager refreshableView = getRefreshableView();
+		VerticalViewPager refreshableView = getRefreshableView();
 
 		PagerAdapter adapter = refreshableView.getAdapter();
 		if (null != adapter) {
